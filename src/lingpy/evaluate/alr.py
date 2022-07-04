@@ -1,6 +1,7 @@
 """
 Module provides methods for the evaluation of automatic linguistic reconstruction analyses.
 """
+import numpy as np
 from ..settings import rcParams
 from ..align.pairwise import edit_dist
 from ..sequence.sound_classes import ipa2tokens, tokens2class
@@ -98,7 +99,7 @@ def mean_edit_distance(
 
         distances.append(edit_dist(proto, consensus, normalized=False))
 
-    med = sum(distances) / len(distances)
+    med = np.mean(distances)
     log.info('MEAN ED: {0:.2f}'.format(med))
     return med
 
