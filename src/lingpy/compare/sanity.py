@@ -1,6 +1,7 @@
 """
 Module provides basic checks for wordlists.
 """
+import numpy as np
 import networkx as nx
 from networkx.algorithms.clique import find_cliques
 from itertools import combinations
@@ -211,7 +212,7 @@ def average_coverage(wordlist, concepts='concepts'):
     for v in mc.values():
         for key, val in v.items():
             score += [len(val)]
-    return sum(score) / len(score) / wordlist.height
+    return np.mean(score) / wordlist.height
 
 
 def synonymy(wordlist, concepts='concept', languages='doculect'):
