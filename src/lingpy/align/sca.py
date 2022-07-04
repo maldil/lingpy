@@ -1438,7 +1438,7 @@ def get_consensus(msa, gaps=False, taxa=False, classes=False, **keywords):
                 gap_array += [line.count('-') / len(line)]
 
             # we now try to get the average number of lines
-            average = sum(gap_array) / len(gap_array)
+            average = np.mean(gap_array)
 
             # we discard all lines which are beyond the half of the average (stupid
             # solution, but for testing it hopefully suffices...)
