@@ -165,7 +165,7 @@ def mutual_coverage_subset(wordlist, threshold, concepts='concept'):
         for taxA, taxB in combinations(clique, r=2):
             sums += [len(G[taxA][taxB]['coverage'])]
         if sums:
-            val = int(sum(sums) / len(sums) + 0.5)
+            val = int(np.mean(sums) + 0.5)
             best_cliques[len(clique)] += [(val, sorted(clique))]
             if len(clique) > best_clique:
                 best_clique = len(clique)
