@@ -1,6 +1,7 @@
 """
 Evaluation methods for automatic cognate detection.
 """
+import numpy as np
 from itertools import combinations
 from collections import defaultdict
 
@@ -131,8 +132,8 @@ def bcubes(wordlist, gold='cogid', test='lexstatid', modify_ref=False, pprint=Tr
         fsc = []
 
     # calculate general scores
-    BCP = sum(bcp) / len(bcp)
-    BCR = sum(bcr) / len(bcr)
+    BCP = np.mean(bcp)
+    BCR = np.mean(bcr)
     FSC = sum(fsc) / len(fsc) if fsc else 2 * ((BCP * BCR) / (BCP + BCR))
     
     as_string(_format_results('B-Cubed', BCP, BCR, FSC), pprint=pprint)
