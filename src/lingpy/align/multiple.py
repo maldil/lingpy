@@ -2,6 +2,7 @@
 Module provides classes and functions for multiple alignment analyses.
 """
 import logging
+import numpy as np
 from itertools import combinations, combinations_with_replacement, product
 from collections import defaultdict
 from functools import partial
@@ -1215,8 +1216,8 @@ class Multiple:
 
         """
         orphans = []
-        means = [sum(line) / len(line) for line in self.matrix]  # XXX self.matrix.mean()
-        means = sum(means) / len(means)
+        means = [np.mean(line) for line in self.matrix]  # XXX self.matrix.mean()
+        means = np.mean(means)
 
         for i, line in enumerate(self.matrix):
             if sum(line) / len(line) > means:
