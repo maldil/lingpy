@@ -134,7 +134,7 @@ def bcubes(wordlist, gold='cogid', test='lexstatid', modify_ref=False, pprint=Tr
     # calculate general scores
     BCP = np.mean(bcp)
     BCR = np.mean(bcr)
-    FSC = sum(fsc) / len(fsc) if fsc else 2 * ((BCP * BCR) / (BCP + BCR))
+    FSC = np.mean(fsc) if fsc else 2 * ((BCP * BCR) / (BCP + BCR))
     
     as_string(_format_results('B-Cubed', BCP, BCR, FSC), pprint=pprint)
 
@@ -207,7 +207,7 @@ def partial_bcubes(wordlist, gold, test, pprint=True):
                     scores += [other_idxs.count(idx) / len(idxs)]
             else: 
                 scores += [1]
-        return sum(scores) / len(scores)
+        return np.mean(scores)
 
     bcr = get_scores(gold, test)
     bcp = get_scores(test, gold)
@@ -423,11 +423,11 @@ def diff(
             preP += [1.0]
             recP += [1.0]
 
-    bp = sum(preB) / len(preB)
-    br = sum(recB) / len(recB)
+    bp = np.mean(preB)
+    br = np.mean(recB)
     bf = 2 * (bp * br) / (bp + br)
-    pp = sum(preP) / len(preP)
-    pr = sum(recP) / len(recP)
+    pp = np.mean(preP)
+    pr = np.mean(recP)
     pf = 2 * (pp * pr) / (pp + pr)
 
     as_string('\n'.join(lines), 
