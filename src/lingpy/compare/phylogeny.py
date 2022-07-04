@@ -3704,7 +3704,7 @@ class PhyBo(Wordlist):
                 if item in subset[1] or item == subset[1]:
                     gains += [self.gls[glm][cog][1]]
 
-        noo = sum(gains) / len(gains)
+        noo = np.mean(gains)
         ppc = sum([1 for g in gains if g > 1]) / len(gains)
 
         log.info('Number of Origins: {0:.2f}'.format(noo))
